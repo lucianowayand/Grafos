@@ -16,5 +16,5 @@ class Grafo:
 
     #Adiciona Aresta
     def addAresta(self, vertice1, vertice2, valor):         #Adicionando arestas com o método update ele é capaz de adicionar dicionários até mesmo a dicionários já existentes              
-            self.grafo[vertice1].update({vertice2:valor})             
-            self.grafo[vertice2].update({vertice1:valor})
+        self.grafo[vertice1].update({vertice2:valor})             
+        self.grafo[vertice2].update({vertice1:valor})
