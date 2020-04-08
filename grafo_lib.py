@@ -20,11 +20,11 @@ class Grafo():
         #Caso exista ele sera removido.
         if vertice in self.grafo:
             del self.grafo[vertice]
-        
+        #Percorre-se todo o grafo buscando o vertice a ser removido.
         for key in self.grafo:
+            #Para o caso de mais uma conexao ao mesmo vertice se removem todas as conexoes ate nao existir mais conexao determinada
             while vertice in self.grafo[key]:
                 self.grafo[key].remove(vertice)
-
     
     #Funcao para adicionar arestas com origem e destino bem determinados.
     def adiciona_aresta_direcionada(self,vertice_origem,vertice_destino):
