@@ -22,5 +22,5 @@ def le_entrada(path=r"C:\Users\Luciano\Code\Python\Grafos\entrada.txt"):
         for values in range(1,len(aux[keys])):
             grafo[aux[keys][0]].append(aux[keys][values])
 
-    #Teste de funcionamento, a saida que se busca são todos os valores que estão ligados a chave 'A'.
+    #Retorna o grafo obtido apos o tratamento.
     return grafo
