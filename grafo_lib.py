@@ -20,6 +20,11 @@ class Grafo():
         #Caso exista ele sera removido.
         if vertice in self.grafo:
             del self.grafo[vertice]
+        
+        for key in self.grafo:
+            while vertice in self.grafo[key]:
+                self.grafo[key].remove(vertice)
+
     
     #Funcao para adicionar arestas com origem e destino bem determinados.
     def adiciona_aresta_direcionada(self,vertice_origem,vertice_destino):
