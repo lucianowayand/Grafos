@@ -1,10 +1,12 @@
+from collections import defaultdict
 from leitor_de_entrada import le_entrada
 from grafo_lib import Grafo
 
-g = Grafo(le_entrada())
+g = Grafo(defaultdict(dict))
 
 print(g.grafo)
 
-g.elimina_vertice('V3')
+g.adiciona_aresta_nao_direcionada(1,2)
+g.elimina_aresta(2,1)
 
 print(g.grafo)

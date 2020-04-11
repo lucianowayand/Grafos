@@ -35,6 +35,20 @@ class Grafo():
         else:
             self.grafo[vertice_origem] = [vertice_destino]
 
+    def adiciona_aresta_nao_direcionada(self,vertice_origem,vertice_destino):
+        #Caso ja exista o vertice esta conexao sera feita ao fim da lista.
+        if vertice_origem in self.grafo:
+            self.grafo[vertice_origem].append(vertice_destino)
+        #Caso ainda nao exista esse vertice se inicia uma lista apenas com seu valor.
+        else:
+            self.grafo[vertice_origem] = [vertice_destino]
+
+        if vertice_destino in self.grafo:
+            self.grafo[vertice_destino].append(vertice_origem)
+        #Caso ainda nao exista esse vertice se inicia uma lista apenas com seu valor.
+        else:
+            self.grafo[vertice_destino] = [vertice_origem]
+
     #Funcao para remover arestas entre dois vertices.
     def elimina_aresta(self,vertice_origem,vertice_destino):
         #Caso exista a conexao entre os vertices dados e removido o destino da lista de conexoes do dicionario.
