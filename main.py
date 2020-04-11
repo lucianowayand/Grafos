@@ -9,4 +9,4 @@ g.elimina_vertice('V3')
 
 print(g.grafo)
 
-#Testando commit direto do vscode
+#Testando commit direto do vsc
