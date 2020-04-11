@@ -1,8 +1,7 @@
-from collections import defaultdict
 from leitor_de_entrada import le_entrada
 from grafo_lib import Grafo
 
-g = Grafo(defaultdict(dict))
+g = Grafo()
 
 print(g.grafo)
 

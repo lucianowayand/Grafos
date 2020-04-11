@@ -3,10 +3,8 @@ from collections import defaultdict
 
 class Grafo():
     #Funcao construtora que pode ou nao receber o grafo pre determinado, o ideal e utilizar a funcao le_entrada para o tal.
-    def __init__(self,grafo):
-        #Caso não receba um grafo se inicia um dicionario vazio.
-        if grafo == None:
-            self.grafo = defaultdict(dict)
+    def __init__(self,grafo=defaultdict(dict)):
+        #Caso não receba um grafo se inicia um dicionario vazio, caso contrario se insere o valor recebido.
         self.grafo = grafo
 
     #Esta funcao adiciona vertices vazios.
