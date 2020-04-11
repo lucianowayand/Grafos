@@ -8,3 +8,5 @@ print(g.grafo)
 g.elimina_vertice('V3')
 
 print(g.grafo)
+
+#Testando commit direto do vscode
