@@ -13,17 +13,6 @@ class Grafo():
         if vertice not in self.grafo:
             self.grafo[vertice]= {'coordenadas':{'X': x,'Y': y}, 'arestas':{}}
 
-    #Funcao necessaria para a remocao de vertices.
-    def elimina_vertice(self, vertice):
-        #Caso exista ele sera removido.
-        if vertice in self.grafo:
-            del self.grafo[vertice]
-        #Percorre-se todo o grafo buscando o vertice a ser removido.
-        for key in self.grafo:
-            #Para o caso de mais uma conexao ao mesmo vertice se removem todas as conexoes ate nao existir mais conexao determinada
-            while vertice in self.grafo[key]:
-                self.grafo[key].remove(vertice)
-    
     #Funcao para adicionar arestas com origem e destino bem determinados.
     def adiciona_aresta_direcionada(self,vertice_origem,vertice_destino,peso):
         #Caso ja exista o vertice esta conexao sera feita ao fim da lista.
@@ -68,6 +57,17 @@ class Grafo():
                 self.grafo[vertice_origem].remove(vertice_destino)
             except:
                 print("Nao existe conexao de",vertice_origem,"a",vertice_destino)
+
+    #Funcao necessaria para a remocao de vertices.
+    def elimina_vertice(self, vertice):
+        #Caso exista ele sera removido.
+        if vertice in self.grafo:
+            del self.grafo[vertice]
+        #Percorre-se todo o grafo buscando o vertice a ser removido.
+        for key in self.grafo:
+            #Para o caso de mais uma conexao ao mesmo vertice se removem todas as conexoes ate nao existir mais conexao determinada
+            while vertice in self.grafo[key]:
+                self.grafo[key].remove(vertice)
 
     def cria_grafo_aleatorio(self, numero_de_vertices):
         for i in range(numero_de_vertices):
