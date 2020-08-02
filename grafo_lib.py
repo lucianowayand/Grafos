@@ -8,10 +8,10 @@ class Grafo():
         self.grafo = grafo
 
     #Esta funcao adiciona vertices vazios.
-    def adiciona_vertice(self, vertice):
+    def adiciona_vertice(self, vertice, x, y):
         #Caso nao exista o vertice ele sera iniciado com uma lista vazia.
         if vertice not in self.grafo:
-            self.grafo[vertice]=defaultdict(dict)
+            self.grafo[vertice]= {'coordenadas':{'X': x,'Y': y}, 'arestas':{}}
 
     #Funcao necessaria para a remocao de vertices.
     def elimina_vertice(self, vertice):
@@ -68,3 +68,8 @@ class Grafo():
                 self.grafo[vertice_origem].remove(vertice_destino)
             except:
                 print("Nao existe conexao de",vertice_origem,"a",vertice_destino)
+
+    def cria_grafo_aleatorio(self, numero_de_vertices):
+        for i in range(numero_de_vertices):
+            self.adiciona_aresta_nao_direcionada(i)
+            self.grafo[i]
