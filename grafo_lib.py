@@ -59,6 +59,9 @@ class Grafo():
             while vertice in self.grafo[key]:
                 self.grafo[key].remove(vertice)
 
+    def distancia_de_vertices(self, a, b):
+        return ((self.grafo[a]["coordenadas"]["X"] - self.grafo[b]["coordenadas"]["X"])**2  +  (self.grafo[a]["coordenadas"]["Y"] - self.grafo[b]["coordenadas"]["Y"])**2)**1/2
+
     def cria_grafo_aleatorio(self, numero_de_vertices):
         for i in range(numero_de_vertices+1):
             self.adiciona_vertice_vazio(i,round(random.random(),2),round(random.random(),2))
