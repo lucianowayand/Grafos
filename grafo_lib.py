@@ -11,7 +11,7 @@ class Grafo():
     def adiciona_vertice(self, vertice):
         #Caso nao exista o vertice ele sera iniciado com uma lista vazia.
         if vertice not in self.grafo:
-            self.grafo[vertice]=[]
+            self.grafo[vertice]=defaultdict(dict)
 
     #Funcao necessaria para a remocao de vertices.
     def elimina_vertice(self, vertice):
@@ -25,27 +25,40 @@ class Grafo():
                 self.grafo[key].remove(vertice)
     
     #Funcao para adicionar arestas com origem e destino bem determinados.
-    def adiciona_aresta_direcionada(self,vertice_origem,vertice_destino):
+    def adiciona_aresta_direcionada(self,vertice_origem,vertice_destino,peso):
         #Caso ja exista o vertice esta conexao sera feita ao fim da lista.
         if vertice_origem in self.grafo:
-            self.grafo[vertice_origem].append(vertice_destino)
+            if vertice_destino in self.grafo:
+                self.grafo[vertice_origem].update({vertice_destino:peso})
+            else:
+                self.grafo[vertice_origem].update({vertice_destino:peso})
+                self.grafo[vertice_destino] = {}
         #Caso ainda nao exista esse vertice se inicia uma lista apenas com seu valor.
         else:
-            self.grafo[vertice_origem] = [vertice_destino]
-
-    def adiciona_aresta_nao_direcionada(self,vertice_origem,vertice_destino):
+            if vertice_destino in self.grafo:
+                self.grafo[vertice_origem] = {vertice_destino:peso}
+            else:
+                self.grafo[vertice_origem] = {vertice_destino:peso}
+                self.grafo[vertice_destino] = {}
+            
+    #Funcao para adicionar arestas com origem e destino bem determinados.
+    def adiciona_aresta_nao_direcionada(self,vertice_origem,vertice_destino,peso):
         #Caso ja exista o vertice esta conexao sera feita ao fim da lista.
         if vertice_origem in self.grafo:
-            self.grafo[vertice_origem].append(vertice_destino)
+            if vertice_destino in self.grafo:
+                self.grafo[vertice_origem].update({vertice_destino:peso})
+                self.grafo[vertice_destino].update({vertice_origem:peso}) 
+            else:
+                self.grafo[vertice_origem].update({vertice_destino:peso})
+                self.grafo[vertice_destino] = {vertice_origem:peso}
         #Caso ainda nao exista esse vertice se inicia uma lista apenas com seu valor.
         else:
-            self.grafo[vertice_origem] = [vertice_destino]
-
-        if vertice_destino in self.grafo:
-            self.grafo[vertice_destino].append(vertice_origem)
-        #Caso ainda nao exista esse vertice se inicia uma lista apenas com seu valor.
-        else:
-            self.grafo[vertice_destino] = [vertice_origem]
+            if vertice_destino in self.grafo:
+                self.grafo[vertice_origem] = {vertice_destino:peso}
+                self.grafo[vertice_destino].update({vertice_origem:peso})
+            else:
+                self.grafo[vertice_origem] = {vertice_destino:peso}
+                self.grafo[vertice_destino] = {vertice_origem:peso}
 
     #Funcao para remover arestas entre dois vertices.
     def elimina_aresta(self,vertice_origem,vertice_destino):
