@@ -69,6 +69,9 @@ class Grafo():
         return ((self.grafo[a]["coordenadas"]["X"] - self.grafo[b]["coordenadas"]["X"])**2 + (self.grafo[a]["coordenadas"]["Y"] - self.grafo[b]["coordenadas"]["Y"])**2)**1/2
 
     def cria_grafo_aleatorio(self, numero_de_vertices):
+        # Cria e adiciona todos os vertices com os valores de x e y já definidos
         for i in range(numero_de_vertices+1):
             self.adiciona_vertice_vazio(
                 i, round(random.random(), 2), round(random.random(), 2))
+        # Adiciona as arestas entre os vertices, os vizinhos de cada vertice sao apenas os K pontos mais proximos, onde K = parte inteira de log2(n)
+        # *****************VOU TE ESPERAR PARA FAZER ISTO QUE A GENTE TEM QUE PENSAR............
