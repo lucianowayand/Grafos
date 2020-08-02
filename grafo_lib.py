@@ -1,5 +1,6 @@
 #defaultdict e uma funcao importante para o inicio de um dicionario vazio.
 from collections import defaultdict
+import random
 
 class Grafo():
     #Funcao construtora que pode ou nao receber o grafo pre determinado, o ideal e utilizar a funcao le_entrada para o tal.
@@ -59,6 +60,5 @@ class Grafo():
                 self.grafo[key].remove(vertice)
 
     def cria_grafo_aleatorio(self, numero_de_vertices):
-        for i in range(numero_de_vertices):
-            self.adiciona_aresta_nao_direcionada(i)
-            self.grafo[i]
+        for i in range(numero_de_vertices+1):
+            self.adiciona_vertice_vazio(i,round(random.random(),2),round(random.random(),2))
