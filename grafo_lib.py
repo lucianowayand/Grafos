@@ -51,7 +51,8 @@ class Grafo():
                 del self.grafo[vertice_origem]["arestas"][vertice_destino]
                 del self.grafo[vertice_destino]["arestas"][vertice_origem]
             except:
-                print("Nao existe conexao de",vertice_origem, "a", vertice_destino)
+                print("Nao existe conexao de",
+                      vertice_origem, "a", vertice_destino)
 
     # Funcao necessaria para a remocao de vertices.
     def elimina_vertice(self, vertice):
@@ -66,34 +67,29 @@ class Grafo():
             del self.grafo[vertice]
 
     def distancia_de_vertices(self, a, b):
-        return round(((self.grafo[a]["coordenadas"]["X"] - self.grafo[b]["coordenadas"]["X"])**2 + (self.grafo[a]["coordenadas"]["Y"] - self.grafo[b]["coordenadas"]["Y"])**2)**1/2,2)
+        return round(((self.grafo[a]["coordenadas"]["X"] - self.grafo[b]["coordenadas"]["X"])**2 + (self.grafo[a]["coordenadas"]["Y"] - self.grafo[b]["coordenadas"]["Y"])**2)**1/2, 4)
 
     def cria_grafo_aleatorio(self, numero_de_vertices):
         # Cria e adiciona todos os vertices com os valores de x e y já definidos
         for i in range(numero_de_vertices):
-            self.adiciona_vertice_vazio(i, round(random.random(), 2), round(random.random(), 2))
+            self.adiciona_vertice_vazio(
+                i, round(random.random(), 4), round(random.random(), 4))
+
         # Adiciona as arestas entre os vertices, os vizinhos de cada vertice sao apenas os K pontos mais proximos, onde K = parte inteira de log2(n)
+        k = math.floor(math.log(numero_de_vertices, 2))
         for keys in self.grafo:
-            for nearest_key in self.checa_distancias(keys,numero_de_vertices):
-                self.adiciona_aresta_nao_direcionada(keys,nearest_key,self.distancia_de_vertices(keys,nearest_key))
-
-    def checa_distancias(self, vertice, numero_de_vertices):
-        vertices_mais_proximos = []
-
-        k = math.floor(math.log(numero_de_vertices,2))
-        print(k)
-        for i in range(k):
-            print(vertices_mais_proximos)
-            vertices_mais_proximos.append(0)
-            aux = 99
-            for key in self.grafo:
-                if key in vertices_mais_proximos or key == vertice:
-                    pass
-                else:
-                    if aux > self.distancia_de_vertices(vertice,key):
-                        print(len(self.grafo[vertice]["arestas"].keys()))
-                        if len(self.grafo[vertice]["arestas"].keys()) < k: 
-                            aux = self.distancia_de_vertices(vertice,key)
+            vertices_mais_proximos = []
+            for i in range(k):
+                vertices_mais_proximos.append(0)
+                aux = 99
+                for key in self.grafo:
+                    if key in vertices_mais_proximos or key == keys:
+                        pass
+                    else:
+                        if aux > self.distancia_de_vertices(keys, key):
+                            aux = self.distancia_de_vertices(keys, key)
                             vertices_mais_proximos[i] = key
-        
-        return vertices_mais_proximos
+
+            for nearest_key in vertices_mais_proximos:
+                self.adiciona_aresta_nao_direcionada(
+                    keys, nearest_key, self.distancia_de_vertices(keys, nearest_key))

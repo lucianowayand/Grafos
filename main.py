@@ -3,6 +3,6 @@ from grafo_lib import Grafo
 
 g = Grafo()
 
-g.cria_grafo_aleatorio(4)
+g.cria_grafo_aleatorio(300)
 
 print(g.grafo)
