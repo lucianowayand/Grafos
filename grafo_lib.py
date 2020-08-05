@@ -2,9 +2,11 @@
 from collections import defaultdict
 import random
 import math
+from graphviz import Graph
 
 
 class Grafo():
+
     # Funcao construtora que pode ou nao receber o grafo pre determinado, o ideal e utilizar a funcao le_entrada para o tal.
     def __init__(self, grafo=defaultdict(dict)):
         # Caso não receba um grafo se inicia um dicionario vazio, caso contrario se insere o valor recebido.
@@ -93,3 +95,15 @@ class Grafo():
             for nearest_key in vertices_mais_proximos:
                 self.adiciona_aresta_nao_direcionada(
                     keys, nearest_key, self.distancia_de_vertices(keys, nearest_key))
+
+    def cria_graphviz(self):
+        dot = Graph('Grafo', format='png', engine='fdp')
+
+        for keys in self.grafo:
+            dot.node(str(keys), str(keys))
+
+        for vertice1 in self.grafo:
+            for vertice2 in self.grafo[vertice1]['arestas']:
+                dot.edge(str(vertice1), str(vertice2))
+
+        dot.render('test-output/round-table.gv', view=True)  # doctest: +SKIP
