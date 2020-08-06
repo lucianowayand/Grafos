@@ -4,7 +4,7 @@ from grafo_lib import Grafo
 
 g = Grafo()
 
-g.cria_grafo_aleatorio(50)
-print(g.grafo)
-
+g.cria_grafo_aleatorio(30)
+print(g.grafo, end='\n\n\n')
+# g.bfs()
 g.cria_graphviz()
