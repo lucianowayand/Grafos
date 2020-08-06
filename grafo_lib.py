@@ -69,7 +69,7 @@ class Grafo():
             del self.grafo[vertice]
 
     def distancia_de_vertices(self, a, b):
-        return round(((self.grafo[a]["coordenadas"]["X"] - self.grafo[b]["coordenadas"]["X"])**2 + (self.grafo[a]["coordenadas"]["Y"] - self.grafo[b]["coordenadas"]["Y"])**2)**1/2, 4)
+        return round(((self.grafo[a]["coordenadas"]["X"] - self.grafo[b]["coordenadas"]["X"])**2 + (self.grafo[a]["coordenadas"]["Y"] - self.grafo[b]["coordenadas"]["Y"])**2)**0.5, 2)
 
     def cria_grafo_aleatorio(self, numero_de_vertices):
         # Cria e adiciona todos os vertices com os valores de x e y já definidos
@@ -97,13 +97,42 @@ class Grafo():
                     keys, nearest_key, self.distancia_de_vertices(keys, nearest_key))
 
     def cria_graphviz(self):
+
         dot = Graph('Grafo', format='png', engine='fdp')
+        grafoAux = self.grafo
 
-        for keys in self.grafo:
-            dot.node(str(keys), str(keys))
+        for vertice1 in grafoAux:
+            dot.node(str(vertice1), pos=str(
+                grafoAux[vertice1]['coordenadas']['X'])+','+str(grafoAux[vertice1]['coordenadas']['Y'])+'!')
+            for vertice2 in grafoAux[vertice1]['arestas']:
+                # Preparacao para printar só a aresta de ida e nao a de volta
+                grafoAux[vertice1]['arestas'][vertice2] = {'jaPassei': 0}
 
-        for vertice1 in self.grafo:
-            for vertice2 in self.grafo[vertice1]['arestas']:
-                dot.edge(str(vertice1), str(vertice2))
+        for vertice1 in grafoAux:
+            for vertice2 in grafoAux[vertice1]['arestas']:
+                if grafoAux[vertice1]['arestas'][vertice2]['jaPassei'] == 0:
+                    grafoAux[vertice1]['arestas'][vertice2]['jaPassei'] = 1
+                    grafoAux[vertice2]['arestas'][vertice1]['jaPassei'] = 1
+                    # Estou vendo como fica botar as arestas com peso :)
+                    dot.edge(str(vertice1), str(vertice2), label=str(
+                        self.distancia_de_vertices(vertice1, vertice2)))
 
-        dot.render('test-output/round-table.gv', view=True)  # doctest: +SKIP
+        dot.render('test-output/grafo')  # doctest: +SKIP
+
+    def bfs(self):
+        bfs = self.grafo
+        t = 0
+        f = []
+        for v in bfs:
+            bfs[v]['acesso'] = 0
+            bfs[v]['pai'] = None
+
+        for v in bfs:
+            bfs[v]['nivel'] = 0
+            t = t + 1
+            bfs[v]['acesso'] = t
+            f.append(v)
+            # fazer aqui bfs ou chamar
+
+        print(bfs, end='\n\n\n')
+        print(f)
