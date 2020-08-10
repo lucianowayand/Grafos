@@ -114,8 +114,8 @@ class Grafo():
                     grafoAux[vertice1]['arestas'][vertice2]['jaPassei'] = 1
                     grafoAux[vertice2]['arestas'][vertice1]['jaPassei'] = 1
                     # Estou vendo como fica botar as arestas com peso :)
-                    dot.edge(str(vertice1), str(vertice2), label=str(
-                        self.distancia_de_vertices(vertice1, vertice2)))
+                    # label=str(self.distancia_de_vertices(vertice1, vertice2))
+                    dot.edge(str(vertice1), str(vertice2))
 
         dot.render('test-output/grafo')  # doctest: +SKIP
 
