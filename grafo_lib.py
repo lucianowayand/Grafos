@@ -4,10 +4,12 @@ import random
 import math
 from graphviz import Graph
 
+dot = Graph('Grafo', format='png', engine='fdp', strict=True)
+
 
 class Grafo():
-
     # Funcao construtora que pode ou nao receber o grafo pre determinado, o ideal e utilizar a funcao le_entrada para o tal.
+
     def __init__(self, grafo=defaultdict(dict)):
         # Caso não receba um grafo se inicia um dicionario vazio, caso contrario se insere o valor recebido.
         self.grafo = grafo
@@ -97,8 +99,6 @@ class Grafo():
                     keys, nearest_key, self.distancia_de_vertices(keys, nearest_key))
 
     def cria_graphviz(self):
-
-        dot = Graph('Grafo', format='png', engine='fdp')
         grafoAux = self.grafo
 
         for vertice1 in grafoAux:
@@ -119,20 +119,49 @@ class Grafo():
 
         dot.render('test-output/grafo')  # doctest: +SKIP
 
-    def bfs(self):
+    def bfss(self, f, t, grafo):
+        while f != []:
+            v = f[0]
+            del f[0]
+            for w in grafo[v]['arestas']:
+                if grafo[w]['indice'] == 0:
+                    grafo[w]['pai'] = v
+                    grafo[w]['nivel'] = grafo[v]['nivel'] + 1
+                    t += 1
+                    grafo[w]['indice'] = t
+                    f.append(w)
+                elif grafo[w]['nivel'] == grafo[v]['nivel']:
+                    if grafo[w]['pai'] == grafo[v]['pai']:
+                        dot.edge(str(v), str(w), color='red')
+                    else:
+                        #dot.edge(str(v), str(w), color='')
+                        pass
+                elif grafo[w]['nivel'] == grafo[v]['nivel'] + 1:
+                    dot.edge(str(v), str(w), color='green')
+
+    def iniciarBFS(self):
         bfs = self.grafo
         t = 0
         f = []
         for v in bfs:
-            bfs[v]['acesso'] = 0
+            bfs[v]['indice'] = 0
             bfs[v]['pai'] = None
-
-        for v in bfs:
+        self.pintaAmarelo()
+        dot.node('0', fillcolor='orange', style='filled')
+        for v in bfs:  # Para que a busca atinja todos os vértices, no caso de G ser desconexo: acesso = 0;
             bfs[v]['nivel'] = 0
-            t = t + 1
-            bfs[v]['acesso'] = t
+            t += 1
+            bfs[v]['indice'] = t
             f.append(v)
-            # fazer aqui bfs ou chamar
+            self.bfss(f, t, bfs)
 
-        print(bfs, end='\n\n\n')
+        print(bfs, end='\n')
         print(f)
+
+    def pintaAmarelo(self):
+        for vertice1 in self.grafo:
+            for vertice2 in self.grafo[vertice1]['arestas']:
+                if vertice1 == 0 or vertice2 == 0:
+                    pass
+                else:
+                    dot.edge(str(vertice1), str(vertice2), color='yellow')
