@@ -10,6 +10,8 @@ import math
 from graphviz import Graph
 dot = Graph('Grafo', format='png', engine='fdp', strict=True)
 
+color_list = ['pink','magenta','indigo','blue','lightseagreen','green','yellowgreen','yellow','goldenrod','orange','orangered','red','rosybrown1','white','grey','black']
+
 
 class Grafo():
     # Funcao construtora que pode ou nao receber o grafo pre determinado.
@@ -97,8 +99,7 @@ class Grafo():
 
             for vertices_proximos in vertices_mais_proximos: #Adiciona-se aresta entre os vertices mais proximos e o vertice, com peso determinado pela distancia.
                 self.adiciona_aresta_nao_direcionada(vertices, vertices_proximos, self.distancia_de_vertices(vertices, vertices_proximos))
-
-    
+  
     def cria_graphviz(self):
         for vertice1 in self.grafo:#Percorre o grafo incluindo os vertices
             dot.node(str(vertice1), pos=str(self.grafo[vertice1]['coordenadas']['X'])+','+str(self.grafo[vertice1]['coordenadas']['Y'])+'!')
@@ -116,49 +117,44 @@ class Grafo():
         #Cria o arquivo do grafo
         dot.render('test-output/grafo')
 
-    def bfss(self, f, t, grafo):
-        while f != []:
-            v = f[0]
-            del f[0]
-            for w in grafo[v]['arestas']:
-                if grafo[w]['indice'] == 0:
-                    grafo[w]['pai'] = v
-                    grafo[w]['nivel'] = grafo[v]['nivel'] + 1
+    def busca_em_largura(self, lista_de_vertices, t): 
+        while lista_de_vertices != []: #Percorre a lista de vértices de modo a abrigar o caso de grafos disconexos.
+            v = lista_de_vertices[0] 
+            del lista_de_vertices[0]
+            
+            for w in self.grafo[v]['arestas']: #Percorre todas as conexões com o vertice v
+                if self.grafo[w]['indice'] == 0:
+                    self.grafo[w]['pai'] = v
+                    self.grafo[w]['nivel'] = self.grafo[v]['nivel'] + 1
                     t += 1
-                    grafo[w]['indice'] = t
-                    f.append(w)
-                elif grafo[w]['nivel'] == grafo[v]['nivel']:
-                    if grafo[w]['pai'] == grafo[v]['pai']:
+                    self.grafo[w]['indice'] = t
+                    lista_de_vertices.append(w)
+                elif self.grafo[w]['nivel'] == self.grafo[v]['nivel']: #Caso w seja irmão de v ou sobrinho a cor das arestas muda.
+                    if self.grafo[w]['pai'] == self.grafo[v]['pai']:
                         dot.edge(str(v), str(w), color='red')
-                    else:
-                        #dot.edge(str(v), str(w), color='')
-                        pass
-                elif grafo[w]['nivel'] == grafo[v]['nivel'] + 1:
+                elif self.grafo[w]['nivel'] == self.grafo[v]['nivel'] + 1:
                     dot.edge(str(v), str(w), color='green')
+                dot.node(str(w), fillcolor=color_list[self.grafo[w]['nivel']], style='filled') #Ao fim pinta-se w de acordo com seu nível.
 
     def iniciarBFS(self): #Funcao de preparação, copia o grafo em um auxiliar de tratamento
         #Inicialização de valores
-        grafo_bfs = self.grafo
         t = 0
         f = []
         self.aquarela() #Pinta o grafo raiz para mudar as cores a cada interação.
 
-        for vertice in grafo_bfs:
-            grafo_bfs[vertice]['indice'] = 0
-            grafo_bfs[vertice]['pai'] = None
+        for vertice in self.grafo: #Adiciona a cada vertice as chaves de informação necessárias
+            self.grafo[vertice]['pai'] = None
+            self.grafo[vertice]['indice'] = 0
+            self.grafo[vertice]['nivel'] = 0
         
-        for _vertice in grafo_bfs:  # Para que a busca atinja todos os vértices, no caso de G ser desconexo: acesso = 0;
-            grafo_bfs[_vertice]['nivel'] = 0
+        for _vertice in self.grafo: #E altera o indice a cada interação
             t += 1
-            grafo_bfs[_vertice]['indice'] = t
+            self.grafo[_vertice]['indice'] = t
             f.append(_vertice)
-            self.bfss(f, t, grafo_bfs)
-
-        print(grafo_bfs, end='\n')
-        print(f)
+            self.busca_em_largura(f, t)
 
     def aquarela(self):
-        dot.node('0', fillcolor='orange', style='filled')
+        dot.node('0', fillcolor=color_list[0], style='filled')
         for vertice1 in self.grafo:
             for vertice2 in self.grafo[vertice1]['arestas']:
                 if vertice1 == 0 or vertice2 == 0:
