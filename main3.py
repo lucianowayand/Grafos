@@ -8,6 +8,6 @@ g = minimo_sucessor.Grafo()
 
 g.grafo_noia()
 
-g.cria_graphviz_tb2()
+g.cria_graphviz()
 
 g.minimos_sucessores()
