@@ -115,7 +115,7 @@ class Grafo():
 
             # Adiciona-se aresta entre os vertices mais proximos e o vertice, com peso determinado pela distancia.
             for vertices_proximos in vertices_mais_proximos:
-                self.adiciona_aresta_nao_direcionada(
+                self.adiciona_aresta_nao_direcionada_dic(
                     vertices, vertices_proximos, self.distancia_de_vertices(vertices, vertices_proximos))
 
     def cria_graphviz(self):
