@@ -31,6 +31,7 @@ class Grafo():
         self.grafo[vertice]['japassei'] = 0
         self.numero_de_vertices += 1
     # Funcao para adicionar arestas com origem e destino bem determinados.
+
     def adiciona_aresta_nao_direcionada_dic(self, vertice_origem, vertice_destino, peso):
         if vertice_origem in self.grafo:
             if vertice_destino in self.grafo:
@@ -132,9 +133,7 @@ class Grafo():
                     dot.edge(str(vertice1), str(vertice2), label=str(
                         self.grafo[vertice1]['arestas'][vertice2]['peso']))
 
-
     def ord_pesos_das_arestas(self):
-        print(self.grafo)
         lista = []
         for vertice1 in self.grafo:
             for vertice2 in self.grafo[vertice1]['arestas']:
@@ -143,13 +142,41 @@ class Grafo():
                     # Verifico se já existe a aresta na lista para nao adicionar duplicados.
                     if(vertice2 == tupla[0] and vertice1 == tupla[1]):
                         jaExiste = True
-                if(not jaExiste):
+                if not jaExiste:
                     # para percorrer a lista e a tupla para acessar o peso = lista[linha][coluna].
                     lista.append(
                         (vertice1, vertice2, self.grafo[vertice1]['arestas'][vertice2]['peso']))
         ordenados = sorted(lista, key=lambda peso: peso[2])
         print(ordenados)
 
+        keys = list(self.grafo.keys())
         # Tá agora tenho que ir pegando as arestas em coloca-las em ordem de menor a maior e controlar que não fechem ciclo nem tenham grau maior a 2.
         # criar um novo grafo para nao mexer com o principal, logo ir adicionando nesse grafo vazio as arestas um por um,
         # cada vez que adiciono uma nova aresta controlo se o grafo possui ciclos, se não continuo com o processo. Logo deveria finalizar com um ciclo na ultima aresta :)
+        self.grafo.clear()
+        # Em primeiro lugar adicionamos os vertices
+        for key in keys:
+            self.adiciona_vertice(key)
+
+        for tupla in lista:
+            if len(self.grafo) == 0:
+                self.adiciona_aresta_nao_direcionada_dic(
+                    tupla[0], tupla[1], tupla[2])
+                dot.edge(str(tupla[0]), str(
+                    tupla[1]), label=str(tupla[2]))
+
+            elif self.grau_de_um_vertice(tupla[0]) < 2 and self.grau_de_um_vertice(tupla[1]) < 2:
+                self.adiciona_aresta_nao_direcionada_dic(
+                    tupla[0], tupla[1], tupla[2])
+                dot.edge(str(tupla[0]), str(
+                    tupla[1]), label=str(tupla[2]))
+
+        dot.render('test-output/peso')
+
+    def grau_de_um_vertice(self, vertice):
+        i = 0
+        for vertice1 in self.grafo:
+            for vertice2 in self.grafo[vertice1]['arestas']:
+                if vertice1 == vertice:
+                    i += 1
+        return i
