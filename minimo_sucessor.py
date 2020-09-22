@@ -21,7 +21,6 @@ class Grafo(grafo_lib.Grafo):
         minimos_sucessores.append([vertice,vertice_origem,self.grafo[vertice]['arestas'][vertice_origem]['peso']])
         print(minimos_sucessores)
 
-    
     def grafo_noia(self):
         self.adiciona_vertice('A')
         self.adiciona_vertice('B')
