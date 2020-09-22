@@ -23,6 +23,7 @@ class Grafo():
     def __init__(self, grafo=defaultdict(dict)):
         # Caso não receba um grafo se inicia um dicionario vazio, caso contrario se insere o valor recebido.
         self.grafo = grafo
+        self.numero_de_vertices = 0
 
     # Esta funcao adiciona vertices vazios.
     def adiciona_vertice_vazio(self, vertice, x, y):
@@ -32,6 +33,8 @@ class Grafo():
     def adiciona_vertice(self, vertice):
         # Adiciona um vertice sem as informações de coordenadas.
         self.grafo[vertice] = {'arestas': {}}
+        self.grafo[vertice]['japassei'] = 0
+        self.numero_de_vertices += 1
 
     # Funcao para adicionar arestas com origem e destino bem determinados.
 
