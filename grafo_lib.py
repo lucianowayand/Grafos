@@ -1,3 +1,7 @@
+# numpy serve para criação de matrizes, será utilizada principalmente no algoritmo de ordenação de arestas por peso
+from tkinter.constants import FALSE
+import numpy as np
+
 # defaultdict e uma funcao importante para o inicio de um dicionario vazio.
 from collections import defaultdict
 
@@ -214,7 +218,18 @@ class Grafo():
         dot.render('test-output/grafo')
 
     def ord_pesos_das_arestas(self):
+        print(self.grafo)
         lista = []
         for vertice1 in self.grafo:
-            for vertice2 in self.grafo:
-                print('a')  # já vou estudar como aplicar o algoritmo.
+            for vertice2 in self.grafo[vertice1]['arestas']:
+                jaExiste = False
+                for tupla in lista:
+                    # Verifico se já existe a aresta na lista para nao adicionar duplicados.
+                    if(vertice2 == tupla[0] and vertice1 == tupla[1]):
+                        jaExiste = True
+                if(not jaExiste):
+                    # para percorrer a lista e a tupla para acessar o peso = lista[linha][coluna].
+                    lista.append(
+                        (vertice1, vertice2, self.grafo[vertice1]['arestas'][vertice2]['peso']))
+        ordenados = sorted(lista, key=lambda peso: peso[2])
+        print(ordenados)
