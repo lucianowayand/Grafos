@@ -233,3 +233,7 @@ class Grafo():
                         (vertice1, vertice2, self.grafo[vertice1]['arestas'][vertice2]['peso']))
         ordenados = sorted(lista, key=lambda peso: peso[2])
         print(ordenados)
+
+        # Tá agora tenho que ir pegando as arestas em coloca-las em ordem de menor a maior e controlar que não fechem ciclo nem tenham grau maior a 2.
+        # criar um novo grafo para nao mexer com o principal, logo ir adicionando nesse grafo vazio as arestas um por um,
+        # cada vez que adiciono uma nova aresta controlo se o grafo possui ciclos, se não continuo com o processo. Logo deveria finalizar com um ciclo na ultima aresta :)
