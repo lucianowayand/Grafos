@@ -1,6 +1,4 @@
 .vscode/settings.json
-__pycache__/grafo_lib.cpython-38.pyc
-__pycache__/grafo_lib.cpython-38.pyc
-__pycache__/leitor_de_entrada.cpython-38.pyc
-test-output/grafo
-test-output/grafo.png
+__pycache__/
+test-output/
+
