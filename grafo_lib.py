@@ -12,7 +12,7 @@ import math
 # Graphviz e utilizado para formar a representação gráfica abaixo se configura o grafo a ser representado
 # de modo a determinar o formato, sua construção e método de inserção.
 from graphviz import Graph
-dot = Graph('Grafo', format='png', engine='sfdp', strict=True)
+dot = Graph('Grafo', format='png', engine='circo', strict=True)
 
 color_list = ['pink', 'magenta', 'indigo', 'blue', 'lightseagreen', 'green', 'yellowgreen',
               'yellow', 'goldenrod', 'orange', 'orangered', 'red', 'rosybrown1', 'white', 'grey', 'black']
@@ -131,6 +131,7 @@ class Grafo():
                     self.grafo[vertice2]['arestas'][vertice1]['jaPassei'] = 1
                     dot.edge(str(vertice1), str(vertice2), label=str(
                         self.grafo[vertice1]['arestas'][vertice2]['peso']))
+        dot.render('test-output/grafo')
 
     def ord_pesos_das_arestas(self):
         print(self.grafo)
