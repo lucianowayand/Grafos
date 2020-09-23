@@ -132,7 +132,6 @@ class Grafo():
                     dot.edge(str(vertice1), str(vertice2), label=str(
                         self.grafo[vertice1]['arestas'][vertice2]['peso']))
 
-
     def ord_pesos_das_arestas(self):
         print(self.grafo)
         lista = []
@@ -153,3 +152,69 @@ class Grafo():
         # Tá agora tenho que ir pegando as arestas em coloca-las em ordem de menor a maior e controlar que não fechem ciclo nem tenham grau maior a 2.
         # criar um novo grafo para nao mexer com o principal, logo ir adicionando nesse grafo vazio as arestas um por um,
         # cada vez que adiciono uma nova aresta controlo se o grafo possui ciclos, se não continuo com o processo. Logo deveria finalizar com um ciclo na ultima aresta :)
+
+    def entrada_3(self):
+        self.adiciona_vertice('Joinville')
+        self.adiciona_vertice('Florianopolis')
+        self.adiciona_vertice('Blumenau')
+        self.adiciona_vertice('São José')
+        self.adiciona_vertice('Chapecó')
+        self.adiciona_vertice('Itajaí')
+        self.adiciona_vertice('Criciúma')
+        self.adiciona_vertice('Jaraguá do Sul')
+        self.adiciona_vertice('Palhoça')
+        self.adiciona_vertice('Lages')
+
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Florianopolis', 187)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Blumenau', 104)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'São José', 174)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Chapecó', 512)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Itajaí', 92)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Criciúma', 366)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Jaraguá do Sul', 53)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Palhoça', 182)
+        self.adiciona_aresta_nao_direcionada_dic('Joinville', 'Lages', 312)
+
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'Blumenau', 152)
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'São José', 12)
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'Chapecó', 556)
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'Itajaí', 99)
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'Criciúma', 207)
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'Jaraguá do Sul', 190)
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'Palhoça', 22)
+        self.adiciona_aresta_nao_direcionada_dic('Florianopolis', 'Lages', 229)
+
+        self.adiciona_aresta_nao_direcionada_dic('Blumenau', 'São José', 146)
+        self.adiciona_aresta_nao_direcionada_dic('Blumenau', 'Chapecó', 477)
+        self.adiciona_aresta_nao_direcionada_dic('Blumenau', 'Itajaí', 62)
+        self.adiciona_aresta_nao_direcionada_dic('Blumenau', 'Criciúma', 337)
+        self.adiciona_aresta_nao_direcionada_dic('Blumenau', 'Jaraguá do Sul', 65)
+        self.adiciona_aresta_nao_direcionada_dic('Blumenau', 'Palhoça', 153)
+        self.adiciona_aresta_nao_direcionada_dic('Blumenau', 'Lages', 223)
+
+        self.adiciona_aresta_nao_direcionada_dic('São José', 'Chapecó', 543)
+        self.adiciona_aresta_nao_direcionada_dic('São José', 'Itajaí', 89)
+        self.adiciona_aresta_nao_direcionada_dic('São José', 'Criciúma', 194)
+        self.adiciona_aresta_nao_direcionada_dic('São José', 'Jaraguá do Sul', 181)
+        self.adiciona_aresta_nao_direcionada_dic('São José', 'Palhoça', 9)
+        self.adiciona_aresta_nao_direcionada_dic('São José', 'Lages', 216)
+
+        self.adiciona_aresta_nao_direcionada_dic('Chapecó', 'Itajaí', 530)
+        self.adiciona_aresta_nao_direcionada_dic('Chapecó', 'Criciúma', 531)
+        self.adiciona_aresta_nao_direcionada_dic('Chapecó', 'Jaraguá do Sul', 487)
+        self.adiciona_aresta_nao_direcionada_dic('Chapecó', 'Palhoça', 534)
+        self.adiciona_aresta_nao_direcionada_dic('Chapecó', 'Lages', 331)
+
+        self.adiciona_aresta_nao_direcionada_dic('Itajaí', 'Criciúma', 281)
+        self.adiciona_aresta_nao_direcionada_dic('Itajaí', 'Jaraguá do Sul', 97)
+        self.adiciona_aresta_nao_direcionada_dic('Itajaí', 'Palhoça', 96)
+        self.adiciona_aresta_nao_direcionada_dic('Itajaí', 'Lages', 303)
+
+        self.adiciona_aresta_nao_direcionada_dic('Criciúma', 'Jaraguá do Sul', 371)
+        self.adiciona_aresta_nao_direcionada_dic('Criciúma', 'Palhoça', 185)
+        self.adiciona_aresta_nao_direcionada_dic('Criciúma', 'Lages', 204)
+
+        self.adiciona_aresta_nao_direcionada_dic('Jaraguá do Sul', 'Palhoça', 186)
+        self.adiciona_aresta_nao_direcionada_dic('Jaraguá do Sul', 'Lages', 262)
+
+        self.adiciona_aresta_nao_direcionada_dic('Palhoça', 'Lages', 207)
