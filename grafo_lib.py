@@ -182,15 +182,12 @@ class Grafo():
                     i += 1
         return i
 
-    def dfs(self, vertice_origem):
-        vertice = vertice_origem
-        visitados = []
-        for i in range (len(self.grafo)-1):
+    def dfs(self, visitados, vertice):
+        if vertice not in visitados:
             visitados.append(vertice)
-            print(vertice)
-            for vertice_destino in self.grafo[vertice]['arestas']:
-                if vertice_destino not in visitados:
-                    vertice = vertice_destino
+            for vizinhos in self.grafo[vertice]['arestas']:
+                self.dfs(visitados,vizinhos)
+        print(visitados)
 
     def entrada_3(self):
         self.adiciona_vertice('Joinville')
