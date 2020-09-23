@@ -1,23 +1,57 @@
 strict graph Grafo {
-	A
-	B
-	C
-	D
-	E
-	F
-	A -- B [label=423]
-	A -- C [label=501]
-	A -- D [label=745]
-	A -- E [label=560]
-	A -- F [label=400]
-	B -- C [label=425]
-	B -- D [label=320]
-	B -- E [label=642]
-	B -- F [label=268]
-	C -- D [label=232]
-	C -- E [label=355]
-	C -- F [label=100]
-	D -- E [label=583]
-	D -- F [label=330]
-	E -- F [label=371]
+	Joinville
+	Florianopolis
+	Blumenau
+	"São José"
+	"Chapecó"
+	"Itajaí"
+	"Criciúma"
+	"Jaraguá do Sul"
+	"Palhoça"
+	Lages
+	Joinville -- Florianopolis [label=187]
+	Joinville -- Blumenau [label=104]
+	Joinville -- "São José" [label=174]
+	Joinville -- "Chapecó" [label=512]
+	Joinville -- "Itajaí" [label=92]
+	Joinville -- "Criciúma" [label=366]
+	Joinville -- "Jaraguá do Sul" [label=53]
+	Joinville -- "Palhoça" [label=182]
+	Joinville -- Lages [label=312]
+	Florianopolis -- Blumenau [label=152]
+	Florianopolis -- "São José" [label=12]
+	Florianopolis -- "Chapecó" [label=556]
+	Florianopolis -- "Itajaí" [label=99]
+	Florianopolis -- "Criciúma" [label=207]
+	Florianopolis -- "Jaraguá do Sul" [label=190]
+	Florianopolis -- "Palhoça" [label=22]
+	Florianopolis -- Lages [label=229]
+	Blumenau -- "São José" [label=146]
+	Blumenau -- "Chapecó" [label=477]
+	Blumenau -- "Itajaí" [label=62]
+	Blumenau -- "Criciúma" [label=337]
+	Blumenau -- "Jaraguá do Sul" [label=65]
+	Blumenau -- "Palhoça" [label=153]
+	Blumenau -- Lages [label=223]
+	"São José" -- "Chapecó" [label=543]
+	"São José" -- "Itajaí" [label=89]
+	"São José" -- "Criciúma" [label=194]
+	"São José" -- "Jaraguá do Sul" [label=181]
+	"São José" -- "Palhoça" [label=9]
+	"São José" -- Lages [label=216]
+	"Chapecó" -- "Itajaí" [label=530]
+	"Chapecó" -- "Criciúma" [label=531]
+	"Chapecó" -- "Jaraguá do Sul" [label=487]
+	"Chapecó" -- "Palhoça" [label=534]
+	"Chapecó" -- Lages [label=331]
+	"Itajaí" -- "Criciúma" [label=281]
+	"Itajaí" -- "Jaraguá do Sul" [label=97]
+	"Itajaí" -- "Palhoça" [label=96]
+	"Itajaí" -- Lages [label=303]
+	"Criciúma" -- "Jaraguá do Sul" [label=371]
+	"Criciúma" -- "Palhoça" [label=185]
+	"Criciúma" -- Lages [label=204]
+	"Jaraguá do Sul" -- "Palhoça" [label=186]
+	"Jaraguá do Sul" -- Lages [label=262]
+	"Palhoça" -- Lages [label=207]
 }
