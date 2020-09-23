@@ -183,6 +183,8 @@ class Grafo():
         return i
 
     def arvore(self):
+        raiz = list(self.grafo)[0]
+        vertice = raiz
         '''
         ta vamos analisar, precisamos de percorrer todos os caminhos possíveis até voltar para o vertice de onde saiu, dando assim um ciclo hamiltoniano.
         que podemos fazer?
