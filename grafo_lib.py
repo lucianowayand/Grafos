@@ -180,3 +180,24 @@ class Grafo():
                 if vertice1 == vertice:
                     i += 1
         return i
+
+    def arvore(self):
+        '''
+        ta vamos analisar, precisamos de percorrer todos os caminhos possíveis até voltar para o vertice de onde saiu, dando assim um ciclo hamiltoniano.
+        que podemos fazer?
+        mmmmmm pensa, for? while? tem que ser while, pode ser while ou for mas precisa de recursividade... VAI LA MATI PENSA CARAIO 
+        DFSSS!!!!
+        dfs modificado ne? 
+        '''
+
+    def dfs(self, vertice):
+        visitados = set()
+
+        def dfs_recursiva(vertice):
+            visitados.add(vertice)
+            for vizinho in self.grafo[vertice]['arestas']:
+                print(vertice, vizinho)
+                if vizinho not in visitados:
+                    dfs_recursiva(vizinho)
+
+        dfs_recursiva(vertice)

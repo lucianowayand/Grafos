@@ -45,7 +45,6 @@ grafo.resizable(height=FALSE, width=FALSE)
 
 # Cria um grafo aleatorio e o categoriza de acordo com o BFS
 g = Grafo()
-grafoPesos = Grafo()
 g.adiciona_vertice(0)
 g.adiciona_vertice(1)
 g.adiciona_vertice(2)
@@ -61,8 +60,9 @@ g.adiciona_aresta_nao_direcionada_dic(1, 4, 3)
 g.adiciona_aresta_nao_direcionada_dic(2, 3, 1)
 g.adiciona_aresta_nao_direcionada_dic(2, 4, 1)
 g.adiciona_aresta_nao_direcionada_dic(3, 4, 2)
-g.ord_pesos_das_arestas()
 
+# g.ord_pesos_das_arestas()
+g.dfs(0)
 # g.cria_graphviz_tb2()
 
 # Coloca a imagem gerada em uma janela da biblioteca tkinter
